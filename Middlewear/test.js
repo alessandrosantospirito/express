@@ -14,14 +14,17 @@ const requestTime = function(req, res, next) {
   next();
 };
 
-const modifyName = function (req, res, next, name) {
+const modifyName = function(req, res, next, name) {
   let modified = name + "-dude";
 
   req.name = modified;
 
   next();
-}
+};
 
 module.exports = {
-  specific
+  specific,
+  alwaysListening,
+  requestTime,
+  modifyName
 };

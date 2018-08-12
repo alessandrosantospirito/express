@@ -2,19 +2,29 @@ let express = require("express");
 let app = express();
 let port = process.env.PORT || 8080;
 let mw = require("./Middlewear/test.js");
+let standardWeb = require("./Middlewear/basicRouting");
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Specific Website
+app.use("/birds", standardWeb);
+
+app.use("/", standardWeb);
+
 //Middlewear
 //-------------------------------
+
+//All listens to all requests on the specific path
 app.all("/", mw.specific);
 
+//With no path it reacts to everything
 app.use(mw.alwaysListening);
 
 app.use(mw.requestTime);
 
+//Reacts to everything with "name" in it
 app.param("name", mw.modifyName);
 
 //Get- working with regex
