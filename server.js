@@ -83,6 +83,18 @@ app.post("/multyParameters", function(req, res) {
   res.send(user_name + " " + user_age);
 });
 
+//Routes
+app
+  .route("/login")
+
+  .get(function(req, res) {
+    res.send("this is the login form");
+  })
+
+  .post(function(req, res) {
+    res.send("Processing");
+  });
+
 //Starting port
 app.listen(port);
 console.log("Server started! At http://localhost:" + port);
